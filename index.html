@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>115年度新莊地政事務所測量課業務考核報告</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a5f7a;
+            --secondary-blue: #57a6c3;
+            --light-blue: #e6f4f9;
+            --dark-blue: #0a3d62;
+            --accent-green: #2ecc71;
+            --accent-orange: #f39c12;
+            --text-dark: #2c3e50;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans TC', sans-serif; color: var(--text-dark); background-color: #f4f7f9; line-height: 1.6; }
+
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); z-index: 1000; padding: 1rem 0; box-shadow: var(--shadow); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 900; color: var(--dark-blue); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+
+        /* 英雄視覺區：改為相片背景 */
+        .hero { 
+            min-height: 70vh; 
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero_bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding-top: 80px; 
+        }
+        .hero-title { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-subtitle { font-size: 1.5rem; opacity: 0.9; font-weight: 300; background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 50px; }
+
+        .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: -50px; position: relative; z-index: 10; padding: 0 20px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+        .summary-item { background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); text-align: center; border-bottom: 5px solid var(--secondary-blue); }
+        .summary-num { font-size: 2.2rem; font-weight: 900; color: var(--primary-blue); display: block; }
+        .summary-label { font-size: 0.85rem; color: #7f8c8d; }
+
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-title { font-size: 2.5rem; color: var(--dark-blue); position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 4px; background: var(--accent-green); border-radius: 2px; }
+
+        .report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .report-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid #eee; display: flex; flex-direction: column; }
+        .report-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .card-header { padding: 1.5rem; background: var(--light-blue); text-align: center; }
+        .card-header i { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 0.5rem; }
+        .card-body { padding: 1.5rem; flex-grow: 1; text-align: center; }
+        
+        .main-kpi { background: #fffbe6; color: #d35400; font-weight: 700; padding: 10px; font-size: 0.95rem; border-top: 1px dashed #f39c12; text-align: center; }
+        
+        .card-btn { margin: 1rem auto; padding: 8px 25px; border-radius: 50px; background: var(--primary-blue); color: white; border: none; cursor: pointer; font-weight: 700; transition: 0.3s; }
+        .card-btn:hover { background: var(--dark-blue); }
+
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: white; max-width: 800px; width: 100%; border-radius: 24px; padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #ccc; }
+        .modal-title { color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 15px; border-left: 8px solid var(--accent-green); padding-left: 15px; }
+        .modal-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .detail-item { margin-bottom: 15px; }
+        .detail-label { font-weight: 900; color: var(--dark-blue); display: block; }
+
+        .footer { background: var(--dark-blue); color: white; padding: 30px 20px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fas fa-map-marked-alt"></i> 新莊地政事務所測量課</a>
+            <span style="font-weight:700; color:var(--primary-blue)">115年度 考核報告成果</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">智慧測繪．數位轉型</h1>
+            <p class="hero-subtitle">115年度測量業務考核展示</p>
+        </div>
+    </header>
+
+    <div class="summary-bar">
+        <div class="summary-item">
+            <span class="summary-num">490 份</span>
+            <span class="summary-label">即時通宣導文宣</span>
+        </div>
+        <div class="summary-item">
+            <span class="summary-num">513 點</span>
+            <span class="summary-label">圖根點清查量</span>
+        </div>
+        <div class="summary-item">
+            <span class="summary-num">100%</span>
+            <span class="summary-label">外業滿意度</span>
+        </div>
+        <div class="summary-item">
+            <span class="summary-num">第 1 名</span>
+            <span class="summary-label">3D地籍建置排名</span>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">年度工作亮點</h2>
+        </div>
+
+        <div class="report-grid">
+            <div class="report-card">
+                <div class="card-header"><i class="fas fa-bullhorn"></i><h3>為民服務與宣導</h3></div>
+                <div class="card-body">
+                    <p>外業現場主動宣導「地籍異動即時通」，並提供現場代收申請書服務，守護財產安全。</p>
+                    <button class="card-btn" onclick="openModal('modal-service')">詳細內容</button>
+                </div>
+                <div class="main-kpi"><i class="fas fa-star"></i> 現場宣導累計達 490 份</div>
+            </div>
+
+            <div class="report-card">
+                <div class="card-header"><i class="fas fa-robot"></i><h3>AI 智慧自動製圖</h3></div>
+                <div class="card-body">
+                    <p>導入 Copilot 與 Gemini 協作系統，開發自動化程式，實現圖根點之記一鍵生成。</p>
+                    <button class="card-btn" onclick="openModal('modal-ai')">詳細內容</button>
+                </div>
+                <div class="main-kpi"><i class="fas fa-bolt"></i> 製圖效率大幅提升 67%</div>
+            </div>
+
+            <div class="report-card">
+                <div class="card-header"><i class="fas fa-map-marker-alt"></i><h3>圖根點清理補建</h3></div>
+                <div class="card-body">
+                    <p>執行四維段、龍鳳段全面清查，補建 70 點鋼標圖根點，強化測量基礎資料。</p>
+                    <button class="card-btn" onclick="openModal('modal-survey')">詳細內容</button>
+                </div>
+                <div class="main-kpi"><i class="fas fa-check-circle"></i> 完工清查 513 點</div>
+            </div>
+
+            <div class="report-card">
+                <div class="card-header"><i class="fas fa-microscope"></i><h3>自行研究報告</h3></div>
+                <div class="card-body">
+                    <p>測試測量儀器 (Moasure) 於狹窄巷弄之應用，評估其輔助現行測量作業之潛力。</p>
+                    <button class="card-btn" onclick="openModal('modal-moasure')">詳細內容</button>
+                </div>
+                <div class="main-kpi"><i class="fas fa-lightbulb"></i> 科技創新應用研究</div>
+            </div>
+
+            <div class="report-card">
+                <div class="card-header"><i class="fas fa-ruler-combined"></i><h3>重設簡易基線場</h3></div>
+                <div class="card-body">
+                    <p>於事務所人行道設置 59 公尺標準基線，落實儀器自主校正，確保測量精度。</p>
+                    <button class="card-btn" onclick="openModal('modal-baseline')">詳細內容</button>
+                </div>
+                <div class="main-kpi"><i class="fas fa-check-double"></i> 精度自主管理計畫</div>
+            </div>
+
+            <div class="report-card">
+                <div class="card-header"><i class="fas fa-cubes"></i><h3>三維地籍建物建置</h3></div>
+                <div class="card-body">
+                    <p>推動智慧國土政策，完成大量建物 3D 模型建置，成果品質全市頂尖。</p>
+                    <button class="card-btn" onclick="openModal('modal-3d')">詳細內容</button>
+                </div>
+                <div class="main-kpi"><i class="fas fa-trophy"></i> 既有成屋建置全市第 1</div>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-service" class="modal"><div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-service')">&times;</span>
+        <h2 class="modal-title">為民服務與即時通宣導</h2>
+        <img src="service_pic.jpg" alt="宣導現場" class="modal-img">
+        <div class="detail-item">
+            <span class="detail-label">核心做法</span>
+            <p>利用外業測量民眾在場時機，主動遞送「地籍異動即時通」宣導文宣，並提供現場代收申請書服務，免去民眾往返奔波。</p>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">量化成果</span>
+            <p>115年度累計於外業現場宣導達 490 份，有效提升民眾產權保障意識。</p>
+        </div>
+    </div></div>
+
+    <div id="modal-ai" class="modal"><div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-ai')">&times;</span>
+        <h2 class="modal-title">AI 自動化製圖</h2>
+        <img src="ai_pic.jpg" alt="AI成果" class="modal-img">
+        <p>運用 Google Apps Script 串接 Gemini AI，自動排版圖根點點位與線段並計算出距離，產出標準化「圖根點之記」。</p>
+    </div></div>
+
+    <div id="modal-survey" class="modal"><div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-survey')">&times;</span>
+        <h2 class="modal-title">圖根點清理補建</h2>
+        <img src="survey_pic.jpg" alt="圖根補建" class="modal-img">
+        <p>規劃新莊區四維段、龍鳳段圖根點補建計畫，採用網型平差計算，確保後續複丈之準確度。</p>
+    </div></div>
+
+    <div id="modal-moasure" class="modal"><div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-moasure')">&times;</span>
+        <h2 class="modal-title">Moasure 研究報告</h2>
+        <img src="moasure_pic.jpg" alt="Moasure研究" class="modal-img">
+        <p>實測 Moasure 於不同環境下之誤差範圍，作為未來導入新型測量設備之重要技術參考。</p>
+    </div></div>
+
+    <div id="modal-baseline" class="modal"><div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-baseline')">&times;</span>
+        <h2 class="modal-title">重設簡易基線場</h2>
+        <img src="baseline_pic.jpg" alt="基線場" class="modal-img">
+        <p>於事務所前方人行道埋設不鏽鋼標，建立 59 公尺檢校基線，獲市民肯定。</p>
+    </div></div>
+
+    <div id="modal-3d" class="modal"><div class="modal-content">
+        <span class="close-btn" onclick="closeModal('modal-3d')">&times;</span>
+        <h2 class="modal-title">三維地籍成果</h2>
+        <img src="3d_pic.jpg" alt="3D成果" class="modal-img">
+        <p>115年度既有成屋建置達 62,991 筆，為全市最高產量，展現智慧城市數位轉型成果。</p>
+    </div></div>
+
+    <footer class="footer">
+        <p>© 115年度 新莊地政事務所 測量課 業務考核報告</p>
+    </footer>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
