@@ -36,7 +36,7 @@
         .hero-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
         .hero-subtitle { font-size: clamp(1rem, 2vw, 1.5rem); opacity: 0.9; font-weight: 300; background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 50px; display: inline-block; }
 
-        /* 數據列：手機 2x3 排列，電腦 1x6 排列 */
+        /* 數據列：自動響應 */
         .summary-bar { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -60,7 +60,6 @@
         .section-title { font-size: 2.2rem; color: var(--dark-blue); position: relative; display: inline-block; }
         .section-title::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 4px; background: var(--accent-green); border-radius: 2px; }
 
-        /* 卡片網格：自動響應排版 */
         .report-grid { 
             display: grid; 
             grid-template-columns: 1fr; 
@@ -78,11 +77,24 @@
         .main-kpi { background: #fffbe6; color: #d35400; font-weight: 700; padding: 10px; font-size: 0.85rem; border-top: 1px dashed #f39c12; text-align: center; }
         .card-btn { margin: 1rem auto; padding: 8px 25px; border-radius: 50px; background: var(--primary-blue); color: white; border: none; cursor: pointer; font-weight: 700; transition: 0.3s; }
 
+        /* 模態框樣式修正：確保手機版寬度與置中 */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
-        .modal-content { background: white; max-width: 700px; width: 100%; border-radius: 24px; padding: 25px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-content { 
+            background: white; 
+            max-width: 700px; 
+            width: 100%; 
+            border-radius: 24px; 
+            padding: 25px; 
+            position: relative; 
+            max-height: 90vh; 
+            overflow-y: auto; 
+            text-align: left; /* 確保內容靠左對齊但容器置中 */
+        }
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #999; }
         .modal-title { color: var(--primary-blue); font-size: 1.5rem; margin-bottom: 15px; border-left: 8px solid var(--accent-green); padding-left: 15px; }
         .modal-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .detail-item { margin-top: 15px; }
+        .detail-label { font-weight: 900; color: var(--dark-blue); display: block; margin-bottom: 5px; }
 
         .footer { background: var(--dark-blue); color: white; padding: 30px 20px; text-align: center; }
     </style>
@@ -197,7 +209,6 @@
         <h2 class="modal-title">為民服務與即時通宣導</h2>
         <img src="service_pic.jpg" alt="宣導現場" class="modal-img">
         <p>利用外業測量民眾在場時機，主動遞送「地籍異動即時通」宣導文宣，並提供現場代收申請書服務，免去民眾往返奔波。</p>
-        </div>
         <div class="detail-item">
             <span class="detail-label">量化成果</span>
             <p>115年度累計於外業現場宣導達 490 份，有效提升民眾產權保障意識。</p>
@@ -236,7 +247,7 @@
         <span class="close-btn" onclick="closeModal('modal-3d')">&times;</span>
         <h2 class="modal-title">三維地籍成果</h2>
         <img src="3d_pic.jpg" alt="3D成果" class="modal-img">
-        <p>115年度既有成屋建置達 62,991 筆，為全市最高產量，展現智慧城市數位轉型成果。</p>
+        <p>115年度既有成屋建置達 62,991 筆，展現智慧城市數位轉型成果。</p>
     </div></div>
 
     <footer class="footer">
