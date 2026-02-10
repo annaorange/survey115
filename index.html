@@ -18,7 +18,6 @@
             --text-dark: #2c3e50;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --radius: 16px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,54 +25,64 @@
 
         .navbar { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); z-index: 1000; padding: 1rem 0; box-shadow: var(--shadow); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.4rem; font-weight: 900; color: var(--dark-blue); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .logo { font-size: 1.2rem; font-weight: 900; color: var(--dark-blue); text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
-        /* 英雄視覺區：改為相片背景 */
         .hero { 
-            min-height: 70vh; 
+            min-height: 65vh; 
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero_bg.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            padding-top: 80px; 
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: white; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px 60px;
         }
-        .hero-title { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero-subtitle { font-size: 1.5rem; opacity: 0.9; font-weight: 300; background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 50px; }
+        .hero-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-subtitle { font-size: clamp(1rem, 2vw, 1.5rem); opacity: 0.9; font-weight: 300; background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 50px; display: inline-block; }
 
-        .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: -50px; position: relative; z-index: 10; padding: 0 20px; max-width: 1200px; margin-left: auto; margin-right: auto; }
-        .summary-item { background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); text-align: center; border-bottom: 5px solid var(--secondary-blue); }
-        .summary-num { font-size: 2.2rem; font-weight: 900; color: var(--primary-blue); display: block; }
-        .summary-label { font-size: 0.85rem; color: #7f8c8d; }
+        /* 數據列：手機 2x3 排列，電腦 1x6 排列 */
+        .summary-bar { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px; 
+            margin: -50px auto 0; 
+            position: relative; z-index: 10; padding: 0 20px; max-width: 1200px; 
+        }
+        @media (min-width: 768px) { .summary-bar { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1024px) { .summary-bar { grid-template-columns: repeat(6, 1fr); } }
 
-        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-title { font-size: 2.5rem; color: var(--dark-blue); position: relative; display: inline-block; }
-        .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 4px; background: var(--accent-green); border-radius: 2px; }
+        .summary-item { 
+            background: white; padding: 1.2rem 0.5rem; border-radius: var(--radius); box-shadow: var(--shadow); 
+            text-align: center; border-bottom: 5px solid var(--secondary-blue);
+            display: flex; flex-direction: column; justify-content: center; min-height: 130px;
+        }
+        .summary-num { font-size: 1.6rem; font-weight: 900; color: var(--primary-blue); display: block; line-height: 1.2; margin-bottom: 5px; }
+        .summary-label { font-size: 0.8rem; color: #7f8c8d; font-weight: 700; word-break: keep-all; }
 
-        .report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .report-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid #eee; display: flex; flex-direction: column; }
-        .report-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-title { font-size: 2.2rem; color: var(--dark-blue); position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 4px; background: var(--accent-green); border-radius: 2px; }
+
+        /* 卡片網格：自動響應排版 */
+        .report-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 20px; 
+        }
+        @media (min-width: 768px) { .report-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .report-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .report-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: 0.3s; border: 1px solid #eee; display: flex; flex-direction: column; height: 100%; }
+        .report-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
         .card-header { padding: 1.5rem; background: var(--light-blue); text-align: center; }
         .card-header i { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 0.5rem; }
-        .card-body { padding: 1.5rem; flex-grow: 1; text-align: center; }
+        .card-body { padding: 1.5rem; flex-grow: 1; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
         
-        .main-kpi { background: #fffbe6; color: #d35400; font-weight: 700; padding: 10px; font-size: 0.95rem; border-top: 1px dashed #f39c12; text-align: center; }
-        
+        .main-kpi { background: #fffbe6; color: #d35400; font-weight: 700; padding: 10px; font-size: 0.85rem; border-top: 1px dashed #f39c12; text-align: center; }
         .card-btn { margin: 1rem auto; padding: 8px 25px; border-radius: 50px; background: var(--primary-blue); color: white; border: none; cursor: pointer; font-weight: 700; transition: 0.3s; }
-        .card-btn:hover { background: var(--dark-blue); }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: white; max-width: 800px; width: 100%; border-radius: 24px; padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #ccc; }
-        .modal-title { color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 15px; border-left: 8px solid var(--accent-green); padding-left: 15px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 15px; }
+        .modal-content { background: white; max-width: 700px; width: 100%; border-radius: 24px; padding: 25px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #999; }
+        .modal-title { color: var(--primary-blue); font-size: 1.5rem; margin-bottom: 15px; border-left: 8px solid var(--accent-green); padding-left: 15px; }
         .modal-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 20px; border: 1px solid #ddd; }
-        .detail-item { margin-bottom: 15px; }
-        .detail-label { font-weight: 900; color: var(--dark-blue); display: block; }
 
         .footer { background: var(--dark-blue); color: white; padding: 30px 20px; text-align: center; }
     </style>
@@ -83,7 +92,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo"><i class="fas fa-map-marked-alt"></i> 新莊地政事務所測量課</a>
-            <span style="font-weight:700; color:var(--primary-blue)">115年度 考核報告成果</span>
+            <span style="font-weight:700; color:var(--primary-blue); font-size: 0.8rem;">115年度 考核報告成果</span>
         </div>
     </nav>
 
@@ -111,6 +120,14 @@
             <span class="summary-num">第 1 名</span>
             <span class="summary-label">3D地籍建置排名</span>
         </div>
+        <div class="summary-item">
+            <span class="summary-num">1 案</span>
+            <span class="summary-label">內政部法規參採</span>
+        </div>
+        <div class="summary-item">
+            <span class="summary-num">第 2 名</span>
+            <span class="summary-label">不動產糾紛調處案件量</span>
+        </div>
     </div>
 
     <section class="section">
@@ -131,7 +148,7 @@
             <div class="report-card">
                 <div class="card-header"><i class="fas fa-robot"></i><h3>AI 智慧自動製圖</h3></div>
                 <div class="card-body">
-                    <p>導入 Copilot 與 Gemini 協作系統，開發自動化程式，實現圖根點之記一鍵生成。</p>
+                    <p>導入 Copilot 與 Gemini 協作開發自動化程式，實現圖根點之記一鍵生成。</p>
                     <button class="card-btn" onclick="openModal('modal-ai')">詳細內容</button>
                 </div>
                 <div class="main-kpi"><i class="fas fa-bolt"></i> 製圖效率大幅提升 67%</div>
@@ -179,9 +196,7 @@
         <span class="close-btn" onclick="closeModal('modal-service')">&times;</span>
         <h2 class="modal-title">為民服務與即時通宣導</h2>
         <img src="service_pic.jpg" alt="宣導現場" class="modal-img">
-        <div class="detail-item">
-            <span class="detail-label">核心做法</span>
-            <p>利用外業測量民眾在場時機，主動遞送「地籍異動即時通」宣導文宣，並提供現場代收申請書服務，免去民眾往返奔波。</p>
+        <p>利用外業測量民眾在場時機，主動遞送「地籍異動即時通」宣導文宣，並提供現場代收申請書服務，免去民眾往返奔波。</p>
         </div>
         <div class="detail-item">
             <span class="detail-label">量化成果</span>
